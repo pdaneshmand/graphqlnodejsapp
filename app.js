@@ -1,7 +1,17 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema");
+const mongoose = require("mongoose");
+
 const app = express();
+
+//connect to mongo atlas
+mongoose.connect(
+  "mongodb+srv://persianadmin:QazPlmrughb77@gql-ninja-racwy.mongodb.net/test?retryWrites=true&w=majority"
+);
+mongoose.connection.once("open", () => {
+  console.log("connected to database");
+});
 
 app.use(
   "/graphql",
